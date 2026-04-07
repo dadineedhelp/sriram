@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sriram — Tinkerer, Dad, Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --blue:      #2B5F7E;
+      --blue-dark: #1d4459;
+      --blue-pale: #e8f1f6;
+      --kale:      #4A6741;
+      --charcoal:  #404140;
+      --storm:     #787A7A;
+      --anthracite:#2D2D2D;
+      --white:     #ffffff;
+      --off-white: #f8f7f5;
+      --border:    rgba(43,95,126,0.12);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--white);
+      color: var(--anthracite);
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 clamp(1.5rem, 5vw, 4rem);
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: 1.25rem;
+      color: var(--blue);
+      letter-spacing: 0.04em;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--storm);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--blue); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 80px clamp(1.5rem, 5vw, 4rem) 0;
+      gap: 4rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .hero-text { padding: 4rem 0; }
+
+    .hero-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--kale);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 1px;
+      background: var(--kale);
+    }
+
+    .hero-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(3.5rem, 7vw, 6rem);
+      line-height: 1.05;
+      color: var(--anthracite);
+      margin-bottom: 0.25rem;
+      letter-spacing: -0.01em;
+    }
+
+    .hero-name span {
+      color: var(--blue);
+      font-style: italic;
+    }
+
+    .hero-tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-style: italic;
+      font-size: clamp(1.1rem, 2vw, 1.35rem);
+      color: var(--storm);
+      margin-bottom: 2.5rem;
+      letter-spacing: 0.01em;
+    }
+
+    .hero-bio {
+      font-size: 1.0625rem;
+      line-height: 1.8;
+      color: var(--charcoal);
+      max-width: 480px;
+      margin-bottom: 3rem;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.85rem 2rem;
+      background: var(--blue);
+      color: var(--white);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .hero-cta:hover {
+      background: var(--blue-dark);
+      transform: translateY(-1px);
+    }
+    .hero-cta svg { width: 14px; height: 14px; }
+
+    /* ── HERO VISUAL PANEL ── */
+    .hero-visual {
+      position: relative;
+      height: 560px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-card {
+      position: absolute;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 2rem;
+      box-shadow: 0 8px 40px rgba(43,95,126,0.08);
+    }
+
+    .card-main {
+      width: 300px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-1.5deg);
+      z-index: 2;
+    }
+
+    .card-main .card-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--blue-pale);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+
+    .card-main h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--anthracite);
+      margin-bottom: 0.4rem;
+    }
+
+    .card-main p {
+      font-size: 0.85rem;
+      color: var(--storm);
+      line-height: 1.6;
+    }
+
+    .card-bg-1 {
+      width: 240px;
+      top: 12%;
+      right: 2%;
+      transform: rotate(2deg);
+      opacity: 0.7;
+      z-index: 1;
+      padding: 1.5rem;
+    }
+    .card-bg-2 {
+      width: 220px;
+      bottom: 10%;
+      left: 5%;
+      transform: rotate(-3deg);
+      opacity: 0.6;
+      z-index: 1;
+      padding: 1.5rem;
+    }
+
+    .card-label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--kale);
+      margin-bottom: 0.5rem;
+    }
+
+    .card-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--anthracite);
+      line-height: 1.3;
+    }
+
+    /* ── DIVIDER ── */
+    .section-divider {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      padding: 0 clamp(1.5rem, 5vw, 4rem);
+      max-width: 1200px;
+      margin: 0 auto 5rem;
+    }
+    .section-divider::before, .section-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+    .section-divider span {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--storm);
+      white-space: nowrap;
+    }
+
+    /* ── VALUES ── */
+    .values {
+      padding: 5rem clamp(1.5rem, 5vw, 4rem);
+      background: var(--off-white);
+    }
+
+    .values-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .values-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      font-weight: 300;
+      color: var(--anthracite);
+      line-height: 1.2;
+      position: sticky;
+      top: 5rem;
+    }
+
+    .values-heading em {
+      display: block;
+      color: var(--blue);
+      font-style: italic;
+    }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+    }
+
+    .value-item { border-top: 2px solid var(--blue); padding-top: 1.25rem; }
+
+    .value-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      font-weight: 300;
+      color: var(--blue-pale);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .value-title {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--anthracite);
+      margin-bottom: 0.6rem;
+      letter-spacing: 0.02em;
+    }
+
+    .value-desc {
+      font-size: 0.875rem;
+      color: var(--storm);
+      line-height: 1.75;
+    }
+
+    /* ── PROJECTS TEASER ── */
+    .projects {
+      padding: 6rem clamp(1.5rem, 5vw, 4rem);
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 3rem;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      font-weight: 300;
+      color: var(--anthracite);
+    }
+
+    .section-link {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--blue);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: gap 0.2s;
+    }
+    .section-link:hover { gap: 0.7rem; }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5px;
+      background: var(--border);
+      border: 1.5px solid var(--border);
+    }
+
+    .project-card {
+      background: var(--white);
+      padding: 2.25rem 2rem;
+      text-decoration: none;
+      display: block;
+      transition: background 0.2s;
+    }
+    .project-card:hover { background: var(--blue-pale); }
+
+    .project-tag {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--kale);
+      margin-bottom: 1rem;
+    }
+
+    .project-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--anthracite);
+      margin-bottom: 0.6rem;
+      line-height: 1.3;
+    }
+
+    .project-desc {
+      font-size: 0.85rem;
+      color: var(--storm);
+      line-height: 1.7;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2.5rem clamp(1.5rem, 5vw, 4rem);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--blue);
+      letter-spacing: 0.04em;
+    }
+
+    .footer-note {
+      font-size: 0.8rem;
+      color: var(--storm);
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-eyebrow  { animation: fadeUp 0.6s ease both; }
+    .hero-name     { animation: fadeUp 0.6s 0.1s ease both; }
+    .hero-tagline  { animation: fadeUp 0.6s 0.2s ease both; }
+    .hero-bio      { animation: fadeUp 0.6s 0.3s ease both; }
+    .hero-cta      { animation: fadeUp 0.6s 0.4s ease both; }
+    .hero-visual   { animation: fadeUp 0.8s 0.2s ease both; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 860px) {
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        padding-top: 100px;
+        gap: 2rem;
+      }
+      .hero-visual { height: 360px; }
+      .card-main   { width: 240px; }
+      .card-bg-1, .card-bg-2 { width: 180px; }
+      .values-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .values-heading { position: static; }
+      .values-grid  { grid-template-columns: 1fr; gap: 2rem; }
+      .projects-grid { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="#">Sriram</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="https://github.com/YOUR_USERNAME" target="_blank">GitHub</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="about">
+    <div class="hero-text">
+      <p class="hero-eyebrow">Dad · Engineer · Tinkerer</p>
+
+      <h1 class="hero-name">
+        Hey, I'm<br>
+        <span>Sriram.</span>
+      </h1>
+
+      <p class="hero-tagline">I take things apart to understand them.</p>
+
+      <p class="hero-bio">
+        I'm a dad who loves tinkering with things — mechanical, digital, and everything in between.
+        I build and learn because I can't help it. I share what I discover here for my family first,
+        and for anyone else who might find it useful.
+      </p>
+
+      <a class="hero-cta" href="#projects">
+        See what I'm building
+        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M2 7h10M8 3l4 4-4 4"/>
+        </svg>
+      </a>
+    </div>
+
+    <div class="hero-visual">
+      <div class="hero-card card-bg-1">
+        <p class="card-label">Latest</p>
+        <p class="card-title">Custom Workshop Bench Build</p>
+      </div>
+
+      <div class="hero-card card-main">
+        <div class="card-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#2B5F7E" stroke-width="1.5">
+            <path d="M3 10h14M10 3v14M6 6l8 8M14 6l-8 8"/>
+          </svg>
+        </div>
+        <h3>Mechanical Engineer<br>& Perpetual Learner</h3>
+        <p>40+ years of making things work — and occasionally breaking them first.</p>
+      </div>
+
+      <div class="hero-card card-bg-2">
+        <p class="card-label">Note to family</p>
+        <p class="card-title">Everything here is free — go build something.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"><span>What drives me</span></div>
+
+  <!-- VALUES -->
+  <section class="values">
+    <div class="values-inner">
+      <div>
+        <h2 class="values-heading">
+          Why I<br>do this
+          <em>at all.</em>
+        </h2>
+      </div>
+      <div class="values-grid">
+        <div class="value-item">
+          <div class="value-number">01</div>
+          <p class="value-title">Curiosity over credentials</p>
+          <p class="value-desc">I never need a reason to figure out how something works. The question is enough.</p>
+        </div>
+        <div class="value-item">
+          <div class="value-number">02</div>
+          <p class="value-title">Build to understand</p>
+          <p class="value-desc">Reading gets you halfway. The other half is getting your hands dirty.</p>
+        </div>
+        <div class="value-item">
+          <div class="value-number">03</div>
+          <p class="value-title">Share what works</p>
+          <p class="value-desc">If I struggled with it, someone else probably will too. So I write it down.</p>
+        </div>
+        <div class="value-item">
+          <div class="value-number">04</div>
+          <p class="value-title">Leave it better</p>
+          <p class="value-desc">Every project, every write-up — I want to leave something useful behind.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS TEASER -->
+  <section class="projects" id="projects">
+    <div class="section-header">
+      <h2 class="section-title">Recent Projects</h2>
+      <a class="section-link" href="https://github.com/YOUR_USERNAME" target="_blank">
+        All on GitHub →
+      </a>
+    </div>
+
+    <div class="projects-grid">
+      <a class="project-card" href="#" target="_blank">
+        <p class="project-tag">Mechanical</p>
+        <p class="project-name">Workshop Bench with Storage</p>
+        <p class="project-desc">Designed for a small garage — maximizes vertical space with a simple drawer system.</p>
+      </a>
+      <a class="project-card" href="#" target="_blank">
+        <p class="project-tag">Electronics</p>
+        <p class="project-name">Raspberry Pi Weather Station</p>
+        <p class="project-desc">Reads temperature, humidity, and pressure. Logs to a spreadsheet automatically.</p>
+      </a>
+      <a class="project-card" href="#" target="_blank">
+        <p class="project-tag">Woodworking</p>
+        <p class="project-name">Floating Bookshelf Build</p>
+        <p class="project-desc">Hidden bracket system. No visible screws or brackets — just wood and wall.</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p class="footer-name">Sriram</p>
+    <p class="footer-note">Made with curiosity · Shared for family · Open to everyone</p>
+  </footer>
+
+</body>
+</html>
